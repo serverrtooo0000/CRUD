@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -10,23 +11,23 @@
 		<title>STOMA, материалы и оборудования для збного техника и стоматолога</title>
 
  		<!-- Google font -->
- 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+ 		<link href="{{ asset('css?family=Montserrat:400,500,700') }}"rel="stylesheet">
 
  		<!-- Bootstrap -->
- 		<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css"/>
+ 		<link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
 
  		<!-- Slick -->
- 		<link type="text/css" rel="stylesheet" href="./css/slick.css"/>
- 		<link type="text/css" rel="stylesheet" href="./css/slick-theme.css"/>
+ 		<link type="text/css" rel="stylesheet" href="{{ asset('css/slick.css') }}"/>
+ 		<link type="text/css" rel="stylesheet" href="{{ asset('css/slick-theme.css') }}"/>
 
  		<!-- nouislider -->
- 		<link type="text/css" rel="stylesheet" href="./css/nouislider.min.css"/>
+ 		<link type="text/css" rel="stylesheet" href="{{ asset('css/nouislider.min.css') }}"/>
 
  		<!-- Font Awesome Icon -->
- 		<link rel="stylesheet" href="./css/font-awesome.min.css">
+ 		<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 
  		<!-- Custom stlylesheet -->
- 		<link type="text/css" rel="stylesheet" href="./css/style.css"/>
+ 		<link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,7 +66,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
+									<img src="{{ asset('img/logo.png') }}"/>
 								</a>
 							</div>
 						</div>
@@ -98,24 +99,11 @@
 
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="{{route('index')}}">Главная</a></li>
-					@guest
-						<li><a href="{{route('login')}}">Регистрация</a></li>
 
-					@endguest
+						<li class="active"><a href="{{route('categories.index')}}">Главная</a></li>
 
-
-					@auth
-
-						<li><a href="">Администратор</a></li>
-
-						
-						<li><a href="">Выйти</a></li>
-
-					@endauth
-
-						
-
+						<li><a href="">Категории</a></li>
+					
 						
 					</ul>
 					<!-- /NAV -->
@@ -124,55 +112,29 @@
 			</div>
 			<!-- /container -->
 		</nav>
+
 		<!-- /NAVIGATION -->
 
-		<div class="container">
-				@yield('content')
-				
-			</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-			@if(session()->has('$success'))
-
-
-			<p class="alert alert-success">{{session()->get('success')}}</p>
-
-			@endif
-
-			@if(session()->has('$success'))
-
-
-			<p class="alert alert-warning">{{session()->get('warning')}}</p>
-
-			@endif
-
+	<div class="container">
 		
-
-						
-
-						<!-- store bottom filter -->
-						<div class="store-filter clearfix">
-							
-							<ul class="store-pagination">
-								<li class="active">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								
-							</ul>
-						</div>
-						<!-- /store bottom filter -->
-					</div>
-					<!-- /STORE -->
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
+		<img src="{{ Storage::url($categories->image_path) }}" alt="Category Image">
 		</div>
-		<!-- /SECTION -->
 
-		
+		<div class="container">
+			<h3 class="product-name">{{$categories->description}}<a href="#"></a></h3>
 
-		<!-- FOOTER -->
+			</div>
+
+			
+
+
+			<!-- FOOTER -->
 		<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
@@ -272,3 +234,7 @@
 
 	</body>
 </html>
+
+	
+
+  
