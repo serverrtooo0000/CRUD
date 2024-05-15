@@ -46,20 +46,22 @@ class HomeController extends Controller
         return view('show', ['categories' => $categories]);
     }
 
-    //Показать форму редактирования задачи
-
-    public function edit($id)
-    {
-        $category = Category::findOrFail($id);
-        return view('category.edit',['category' => $category]);
-    }
-
+   
     public function update(CategoryRequest $request,$id)
     {
 
         $category = Category::findOrFail($id);
         $category->title = $request->input('title');
         $category->description = $request->input('description');
+        
+        if($request->hasFile('image'))
+        {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $category->image_path = $imagePath;
+        }
+
+        $category->update($request->all());
+
         $category->save();
 
         return redirect()->route('categories.index');
