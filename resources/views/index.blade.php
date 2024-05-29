@@ -24,7 +24,6 @@
 	<ul>
         @foreach ($categories as $category)
            
-            <a href="{{ route('categories.show', [$category->id]) }}">
             <li>{{ $category->title }}</li>
             <li><?='id = '?>{{ $category->id }}</li>
 
@@ -38,7 +37,7 @@
                     <button type="submit" id="delete-task-{{ $category->id }}" class="btn btn-danger">
                       Delete
                     </button>
-                </form></a>
+                </form>
 
 <button type="submit" class="btn btn-danger"><a href="{{ route('categories.update', [$category->id]) }} ">Update</a></button>
 

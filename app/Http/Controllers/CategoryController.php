@@ -2,43 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 
-class HomeController extends Controller
+class CategoryController extends Controller
 {   
     
-
-    //Отобразить список задач
     public function index()
     {
         $categories = Category::all();
         return view('index',['categories' => $categories]);
     }
 
-  
-    //Показать форму создания задач
-
     public function store(CategoryRequest $request)
     {
         $category = new Category();
+
         $category->title = $request->input('title');
         $category->description = $request->input('description');
-        
-        if($request->hasFile('image'))
-        {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $category->image_path = $imagePath;
-        }
-
-        
+        $imagePath = $request->file('image')->store('images', 'public');
+        $category->image_path = $imagePath;
         $category->save();
 
         return redirect()->route('categories.index');
     }
 
-    //Отоброзить инфрмацию о конкретной задаче
+
 
     public function show($id)
     {
@@ -47,22 +38,15 @@ class HomeController extends Controller
     }
 
    
-    public function update(CategoryRequest $request,$id)
+    public function update(CategoryRequest $request, $id)
     {
 
         $category = Category::findOrFail($id);
         $category->title = $request->input('title');
         $category->description = $request->input('description');
-        
-        if($request->hasFile('image'))
-        {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $category->image_path = $imagePath;
-        }
-
+        $imagePath = $request->file('image')->store('images', 'public');
+        $category->image_path = $imagePath;
         $category->update($request->all());
-
-        $category->save();
 
         return redirect()->route('categories.index');
     }
@@ -71,9 +55,12 @@ class HomeController extends Controller
     {
 
         $category = Category::findOrFail($id);
+        Storage::disk('public')->delete($category->image_path);
         $category->delete();
 
         return redirect()->route('categories.index');
     }
     
 }
+
+

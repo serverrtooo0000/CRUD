@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
 
 
-Route::get('/', [HomeController::class, 'index'])->name('categories.index');
-Route::post('/category', [HomeController::class, 'store'])->name('categories.store');
-Route::get('/category/{category}', [HomeController::class, 'show'])->name('categories.show');
-Route::post('/category/{id}', [HomeController::class, 'update'])->name('categories.update');
-Route::delete('/category/{category}', [HomeController::class, 'destroy'])->name('categories.destroy');
+Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+Route::post('/category', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/category/{category}', [CategoryController::class, 'show'])->name('categories.show');
+Route::post('/category/{id}', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
 
