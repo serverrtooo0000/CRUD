@@ -202,3 +202,26 @@
     opacity: .75;
     color: black;
 }
+
+
+
+.projects-container {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  flex-flow: wrap;
+  .card {
+    width: 300px
+    height: 550px;
+    background-color: bisque;
+    margin-top: 30px;
+    p{
+      color:#FFF;
+      font-size: 24px;
+    }
+    span{
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 18px;
+    }
+  }
+}

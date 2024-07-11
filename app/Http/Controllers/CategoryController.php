@@ -9,6 +9,12 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {   
+
+    public function admin()
+    {
+        $categories = Category::all();
+        return view('admin',['categories' => $categories]);
+    }
     
     public function index()
     {

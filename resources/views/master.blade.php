@@ -50,7 +50,7 @@
 					</ul>
 					<ul class="header-links pull-right">
 						
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						<li><a href="{{ route('categories.admin') }}"><i class="fa fa-user-o"></i> My Account</a></li>
 					</ul>
 				</div>
 			</div>
@@ -123,14 +123,22 @@
 
 
 
+ 
+ <div className="projects-container">
+ 	<div className="card">
+
 	@yield('content')
 
+</div>
+</div>
 
 
+	
 
-
-
-	<!-- FOOTER -->
+<div className="pr-footers">
+<div class="container">
+	
+<!-- FOOTER -->
 		<footer id="footer">
 			<!-- top footer -->
 			<div class="section">
@@ -215,6 +223,8 @@
 			<!-- /bottom footer -->
 
 			</div>
+				</div>
+					</div>
 		</footer>
 		<!-- /FOOTER -->
 
